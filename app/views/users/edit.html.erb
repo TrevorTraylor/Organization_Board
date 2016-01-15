@@ -1,0 +1,17 @@
+<div class="container">
+	<h1>Edit Your Profile!</h1>
+		<% if flash[:errors] %>
+			<p>Please correct the following errors:</p>
+			<% flash[:errors].each do |error| %>
+				<p class='error'><%= error %></p>
+			<% end %>
+		<% end %>
+	<%= simple_form_for @user do |f| %>
+		<%=f.input :first_name %>
+		<%=f.input :last_name %>
+		<%=f.input :email %>
+		<%=f.input :password %>
+		<%=f.input :password_confirmation %>
+		<%=f.button :submit, 'Update User', class: 'btn btn-primary' %><br><br>
+		<%= link_to 'Delete Profile',@user, method: :delete, data: {confirm: "You sure about this?"}, class: 'btn btn-primary' %>
+	<% end %>
